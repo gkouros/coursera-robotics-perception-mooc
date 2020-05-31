@@ -19,6 +19,9 @@ function [ f, pos ] = compute_f_pos( d1_ref, d2_ref, H1, H2, ratio, f_ref )
 % - pos: 1 by 1, camera position on z axis
 
 % YOUR CODE HERE
+h1 = f_ref * H1 / d1_ref;
+f = (d1_ref - d2_ref) / (H1 / h1 - ratio * H2 / h1);
+pos = d1_ref - f * H1 /h1;
 
 end
 
