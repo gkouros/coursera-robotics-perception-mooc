@@ -20,7 +20,12 @@ function [ warped_pts ] = warp_pts( video_pts, logo_pts, sample_pts)
 [ H ] = est_homography(video_pts, logo_pts);
 
 % YOUR CODE HERE
+len = length(sample_pts);
+homogenous_sample_points = [sample_pts, ones(len, 1)];
+homogeneous_warped_pts = (H * homogenous_sample_points')';
+divider = repmat(homogeneous_warped_pts(:, end), [1, 3]);
+homogeneous_warped_pts = homogeneous_warped_pts ./ divider;
+warped_pts = homogeneous_warped_pts(:, 1:end-1);
 
-warped_pts = [];
 end
 
